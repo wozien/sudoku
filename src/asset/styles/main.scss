@@ -1,0 +1,78 @@
+html, body {
+  padding: 0;
+  margin: 0;
+  font-size: 14px;
+  font-family: 'Consolas', 'Microsoft YaHei';
+}
+
+#app {
+  height: 100%;
+  max-width: 450px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+
+  > .header {
+    flex: 0 0 80px;
+    line-height: 80px;
+    text-align: center;
+    font-size: 2rem;
+  }
+
+  > .container {
+    text-align: center;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    .row {
+      .cell {
+        display: inline-block;
+        width: 10%;
+        text-align: center;
+        border: 1px solid #000;
+        border-right-width: 0;
+        border-bottom-width: 0;
+        &:first-child {
+          border-left-width: 2px;
+        }
+        &:nth-child(3n) {
+          border-right-width: 1px;
+        }
+        &:last-child {
+          border-right-width: 2px;
+        }
+      }
+      &:first-child {
+        >.cell {
+          border-top-width: 2px;
+        }
+      }
+      &:nth-child(3n) {
+        >.cell {
+          border-bottom-width: 1px;
+        }
+      }
+      &:last-child {
+        >.cell {
+          border-bottom-width: 2px;
+        }
+      }
+    }
+  }
+
+  > .footer {
+    flex: 0 0 50px;
+    text-align: center;
+    .btn {
+      display: inline-block;
+      background: steelblue;
+      border: 1px solid steelblue;
+      color: white;
+      padding: 5px 10px;
+      outline: none;
+      margin: 0 20px;
+      cursor: pointer;
+    }
+  }
+}

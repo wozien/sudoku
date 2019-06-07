@@ -1,5 +1,9 @@
-import {shuffle} from 'js/utils'
+import $ from 'jquery';
+import Grid from 'js/grid';
+import 'styles/main.scss';
 
-const a = Array.from({length: 9}, (v, i) => i)
-console.log(a);
-console.log(shuffle(a))
+window.$ = $;
+
+const grid = new Grid($('#app>.container'));
+
+grid.generate();
