@@ -26,9 +26,12 @@ function getBoxIndex(rowIndex, colIndex) {
   return Math.floor(rowIndex / 3) * 3 + Math.floor(colIndex / 3);
 }
 
-// 获取宫的数据
-function getBoxArr(matrix, rowIndex, colIndex) {
-  const boxIndex = getBoxIndex(rowIndex, colIndex);
+/**
+ * 获取宫的数据
+ * @param {*} matrix 
+ * @param {*} boxIndex  宫索引
+ */
+export function getBoxArr(matrix, boxIndex) {
   const startBoxRowIndex = Math.floor(boxIndex / 3) * 3;
   const startBoxColIndex = Math.floor(boxIndex % 3) * 3;
   const boxArr = [];
@@ -40,10 +43,32 @@ function getBoxArr(matrix, rowIndex, colIndex) {
   return boxArr;
 }
 
+/**
+ * 根据宫索引和偏移获取矩阵索引
+ * @param {*} boxIndex 
+ * @param {*} index 
+ */
+export function convertToRowCol(boxIndex, index) {
+  const startBoxRowIndex = Math.floor(boxIndex / 3) * 3;
+  const startBoxColIndex = Math.floor(boxIndex % 3) * 3;
+  return {
+    rowIndex: startBoxRowIndex + Math.floor(index / 3),
+    colIndex: startBoxColIndex + Math.floor(index % 3)
+  }
+}
+
+/**
+ * 检查值val能否放到指定位置
+ * @param {*} matrix 
+ * @param {*} val 
+ * @param {*} rowIndex 
+ * @param {*} colIndex 
+ */
 export function checkFillNumber(matrix, val, rowIndex, colIndex) {
   const rowArr = matrix[rowIndex];
   const colArr = Array.from({ length: 9 }, (v, i) => matrix[i][colIndex]);
-  const boxArr = getBoxArr(matrix, rowIndex, colIndex);
+  const boxIndex = getBoxIndex(rowIndex, colIndex);
+  const boxArr = getBoxArr(matrix, boxIndex);
 
   for (let i = 0; i < 9; i++) {
     if (rowArr[i] === val || colArr[i] === val || boxArr[i] === val) return false;

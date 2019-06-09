@@ -11,6 +11,7 @@ html, body {
   margin: 0 auto;
   display: flex;
   flex-direction: column;
+  position: relative;
 
   > .header {
     flex: 0 0 80px;
@@ -33,6 +34,24 @@ html, body {
         border: 1px solid #000;
         border-right-width: 0;
         border-bottom-width: 0;
+        &.mark1 {
+          background: lightsalmon;
+        }
+        &.mark2 {
+          background: lightgreen;
+        }
+        &.error {
+          background: lightpink;
+          &.empty {
+            color: lightpink;
+          }
+        }
+        &.empty {
+          color: white;
+        }
+        &.fixed {
+          background: #eee;
+        }
         &:first-child {
           border-left-width: 2px;
         }
@@ -73,6 +92,34 @@ html, body {
       outline: none;
       margin: 0 20px;
       cursor: pointer;
+    }
+  }
+
+  > .popup {
+    display: none;
+    position: absolute;
+    left: 100px;
+    top: 100px;
+    background: #fff;
+    box-shadow: 0 0 4px 4px #eee;
+
+    .row {
+      text-align: center;
+      span {
+        display: inline-block;
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        border: 1px solid #eee;
+        border-right-width: 0px;
+        border-bottom-width: 0px;
+        &.mark1 {
+          background: lightsalmon;
+        }
+        &.mark2 {
+          background: lightgreen;
+        }
+      }
     }
   }
 }
