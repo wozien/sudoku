@@ -1,12 +1,13 @@
-const path = require('path')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const CleanWebpackPlugin = require('clean-webpack-plugin')
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-const mode = process.env.NODE_ENV || 'development'
-const devtool = mode === 'development' ? 'cheap-module-eval-source-map' : 'cheap-module-source-map'
+const mode = process.env.NODE_ENV || 'development';
+const devtool = mode === 'development' ? 'cheap-module-eval-source-map' : 'cheap-module-source-map';
 
 function resolve(dir) {
-  return path.join(__dirname, dir)
+  return path.join(__dirname, dir);
 }
 
 module.exports = {
@@ -29,8 +30,8 @@ module.exports = {
     extensions: ['.js', '.json'],
     alias: {
       '@': resolve('src'),
-      'js': resolve('src/js'),
-      'styles': resolve('src/styles')
+      js: resolve('src/js'),
+      styles: resolve('src/styles')
     }
   },
 
@@ -66,13 +67,10 @@ module.exports = {
       {
         test: /\.scss$/,
         use: [
-          'style-loader',
           {
-            loader: 'css-loader',
-            options: {
-              importLoaders: 2
-            }
+            loader: MiniCssExtractPlugin.loader
           },
+          'css-loader',
           'postcss-loader',
           'sass-loader'
         ]
@@ -84,6 +82,9 @@ module.exports = {
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       template: './index.html'
+    }),
+    new MiniCssExtractPlugin({
+      filename: '[name].css'
     })
   ]
-}
+};
