@@ -5,8 +5,11 @@
 import { makeMatrix, shuffle, checkFillNumber } from 'js/core/utils';
 
 class Generator {
+  public matrix: number[][];
+  public ordersMatrix: number[][];
+
   constructor() {
-    this.matrix = makeMatrix();
+    this.matrix = makeMatrix(0);
     this.ordersMatrix = this._getOrdersMatrix();
   }
 
@@ -15,9 +18,9 @@ class Generator {
    */
   generate() {
     let count = 1;
-    while(!this._fillNumber() && count < 100) {
+    while (!this._fillNumber() && count < 100) {
       console.log('try agin');
-      this.matrix = makeMatrix();
+      this.matrix = makeMatrix(0);
       this.ordersMatrix = this._getOrdersMatrix();
       count++;
     }
@@ -27,7 +30,7 @@ class Generator {
    * 生成随机数矩阵
    */
   _getOrdersMatrix() {
-    return makeMatrix().map(row => {
+    return makeMatrix(true).map(row => {
       const arr = Array.from({ length: 9 }, (v, i) => i);
       return shuffle(arr);
     });
@@ -37,8 +40,8 @@ class Generator {
    * 填写1-9到矩阵中
    */
   _fillNumber() {
-    for(let n = 1; n <= 9; n++) {
-      if(!this._fillRow(n, 0)) {
+    for (let n = 1; n <= 9; n++) {
+      if (!this._fillRow(n, 0)) {
         return false;
       }
     }
@@ -47,26 +50,26 @@ class Generator {
 
   /**
    * 在第n行填写n
-   * @param {*} n 
-   * @param {*} rowIndex 
+   * @param {*} n
+   * @param {*} rowIndex
    */
-  _fillRow(n, rowIndex) {
-    if(rowIndex > 8) {
+  _fillRow(n: number, rowIndex: number) {
+    if (rowIndex > 8) {
       return true;
     }
 
     const orders = this.ordersMatrix[rowIndex];
     const rows = this.matrix[rowIndex];
 
-    for(let i = 0; i < 9; i++) {
+    for (let i = 0; i < 9; i++) {
       let colIndex = orders[i];
       if (rows[colIndex] || !checkFillNumber(this.matrix, n, rowIndex, colIndex)) {
-          continue;
+        continue;
       }
 
       rows[colIndex] = n;
 
-      if(!this._fillRow(n, rowIndex + 1)) {
+      if (!this._fillRow(n, rowIndex + 1)) {
         rows[colIndex] = 0;
         continue;
       }

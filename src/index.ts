@@ -3,8 +3,6 @@ import Grid from 'js/ui/grid';
 import Popup from 'js/ui/popup';
 import 'styles/main.scss';
 
-window.$ = $;
-
 const grid = new Grid($('#app>.container'));
 const popupObj = new Popup($('.popup'));
 

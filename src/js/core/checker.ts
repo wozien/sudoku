@@ -4,20 +4,25 @@ import { makeMatrix, getBoxArr, convertToRowCol } from 'js/core/utils';
  * 检查用户数独数据
  */
 class Checker {
-  constructor(matrix) {
+  public matrix: any;
+  public matrixMasks: any;
+  public isSucess: boolean;
+
+  constructor(matrix: any) {
     this.matrix = matrix;
     this.matrixMasks = makeMatrix(true);
+    this.isSucess = false;
   }
 
   check() {
     this._checkRow();
     this._checkCol();
     this._checkBox();
-    this.isSucess = this.matrixMasks.every(row => row.every(mark => mark));
+    this.isSucess = this.matrixMasks.every((row: any) => row.every((mark: any) => mark));
     return this.isSucess;
   }
 
-  _checkArr(arr) {
+  _checkArr(arr: Array<number>) {
     const marks = new Array(9).fill(true);
     const len = arr.length;
     for (let i = 0; i < len - 1; i++) {

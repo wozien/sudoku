@@ -2,7 +2,9 @@ import Sudoku from 'js/core/sudoku';
 import Checker from 'js/core/checker';
 
 class Grid {
-  constructor($container) {
+  _$container: any;
+
+  constructor($container: any) {
     this._$container = $container;
   }
 
@@ -14,8 +16,8 @@ class Grid {
     sudoku.make();
     const matrix = sudoku.puzzleMatrix;
 
-    const $cells = matrix.map(row =>
-      row.map(cellVal => {
+    const $cells = matrix.map((row: any) =>
+      row.map((cellVal: any) => {
         return $('<span>')
           .addClass('cell')
           .addClass(cellVal ? 'fixed' : 'empty')
@@ -23,7 +25,7 @@ class Grid {
       })
     );
 
-    const $rows = $cells.map($row => {
+    const $rows = $cells.map(($row: any) => {
       return $('<div>')
         .addClass('row')
         .append($row);
@@ -50,8 +52,8 @@ class Grid {
    * 绑定弹框事件
    * @param {} popupObj
    */
-  bindPopup(popupObj) {
-    this._$container.on('click', 'span', e => {
+  bindPopup(popupObj: any) {
+    this._$container.on('click', 'span', (e: any) => {
       const $cell = $(e.target);
 
       if ($cell.hasClass('fixed')) {
@@ -101,7 +103,7 @@ class Grid {
     // console.log(data);
 
     const marks = checker.matrixMasks;
-    this._$container.children().each((rowIndex, div) => {
+    this._$container.children().each((rowIndex: number, div: any) => {
       $(div)
         .children()
         .each((colIndex, span) => {
@@ -121,13 +123,13 @@ class Grid {
   _getData() {
     return this._$container
       .children()
-      .map((rowIndex, div) => {
+      .map((rowIndex: number, div: any) => {
         return $(div)
           .children()
           .map((colIndex, span) => parseInt($(span).text()) || 0);
       })
       .toArray()
-      .map($data => $data.toArray());
+      .map(($data: JQuery) => $data.toArray());
   }
 }
 
