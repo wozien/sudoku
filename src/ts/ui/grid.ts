@@ -1,6 +1,6 @@
 import $ from 'jquery';
-import Sudoku from 'js/core/sudoku';
-import Checker from 'js/core/checker';
+import Sudoku from 'ts/core/sudoku';
+import Checker from 'ts/core/checker';
 
 class Grid {
   _$container: JQuery;
@@ -99,6 +99,7 @@ class Grid {
     const data = this._getData();
     const checker = new Checker(data);
     if (checker.check()) {
+      alert('恭喜过关啦！');
       return;
     }
     // console.log(data);

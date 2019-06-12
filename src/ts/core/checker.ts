@@ -1,4 +1,4 @@
-import { makeMatrix, getBoxArr, convertToRowCol } from 'js/core/utils';
+import { makeMatrix, getBoxArr, convertToRowCol } from 'ts/core/utils';
 
 /**
  * 检查用户数独数据

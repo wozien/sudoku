@@ -2,7 +2,7 @@
  * 生成数独解决方案
  */
 
-import { makeMatrix, shuffle, checkFillNumber } from 'js/core/utils';
+import { makeMatrix, shuffle, checkFillNumber } from 'ts/core/utils';
 
 class Generator {
   public matrix: number[][];

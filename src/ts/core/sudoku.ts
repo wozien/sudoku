@@ -1,4 +1,4 @@
-import Generator from 'js/core/generator';
+import Generator from 'ts/core/generator';
 
 class Sudoku {
   public solutionMatrix: number[][];

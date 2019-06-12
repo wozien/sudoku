@@ -30,7 +30,7 @@ module.exports = {
     extensions: ['.ts', '.js', '.json'],
     alias: {
       '@': resolve('src'),
-      js: resolve('src/js'),
+      ts: resolve('src/ts'),
       styles: resolve('src/styles')
     }
   },

@@ -1,6 +1,6 @@
 import $ from 'jquery';
-import Grid from 'js/ui/grid';
-import Popup from 'js/ui/popup';
+import Grid from 'ts/ui/grid';
+import Popup from 'ts/ui/popup';
 import 'styles/main.scss';
 
 const grid = new Grid($('#app>.container'));
