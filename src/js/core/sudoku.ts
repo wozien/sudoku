@@ -1,18 +1,20 @@
 import Generator from 'js/core/generator';
 
 class Sudoku {
-  public solutionMatrix: any;
-  public puzzleMatrix: any;
+  public solutionMatrix: number[][];
+  public puzzleMatrix: number[][];
 
   constructor() {
     const generator = new Generator();
     generator.generate();
+
     this.solutionMatrix = generator.matrix;
+    this.puzzleMatrix = [];
   }
 
   make(level = 5) {
-    this.puzzleMatrix = this.solutionMatrix.map((row: any) => {
-      return row.map((val: any) => (Math.random() * 9 < level ? 0 : val));
+    this.puzzleMatrix = this.solutionMatrix.map((row: number[]) => {
+      return row.map((val: number) => (Math.random() * 9 < level ? 0 : val));
     });
   }
 }

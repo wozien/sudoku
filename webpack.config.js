@@ -20,14 +20,14 @@ module.exports = {
     open: true
   },
 
-  entry: './src/index.js',
+  entry: './src/index.ts',
   output: {
     filename: '[hash]_bundle.js',
     path: resolve('dist')
   },
 
   resolve: {
-    extensions: ['.js', '.json'],
+    extensions: ['.ts', '.js', '.json'],
     alias: {
       '@': resolve('src'),
       js: resolve('src/js'),
@@ -38,9 +38,9 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.ts$/,
         exclude: /node_modules/,
-        loader: 'babel-loader'
+        loader: 'ts-loader'
       },
       {
         test: /\.(png|jpe?g|gif)$/,

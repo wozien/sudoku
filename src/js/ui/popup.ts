@@ -1,3 +1,5 @@
+import $ from 'jquery';
+
 class Popup {
   public $panel: JQuery;
   private $targetCell: JQuery;

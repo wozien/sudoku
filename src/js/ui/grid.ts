@@ -1,10 +1,11 @@
+import $ from 'jquery';
 import Sudoku from 'js/core/sudoku';
 import Checker from 'js/core/checker';
 
 class Grid {
-  _$container: any;
+  _$container: JQuery;
 
-  constructor($container: any) {
+  constructor($container: JQuery) {
     this._$container = $container;
   }
 
@@ -16,8 +17,8 @@ class Grid {
     sudoku.make();
     const matrix = sudoku.puzzleMatrix;
 
-    const $cells = matrix.map((row: any) =>
-      row.map((cellVal: any) => {
+    const $cells = matrix.map(row =>
+      row.map((cellVal: number) => {
         return $('<span>')
           .addClass('cell')
           .addClass(cellVal ? 'fixed' : 'empty')
@@ -25,7 +26,7 @@ class Grid {
       })
     );
 
-    const $rows = $cells.map(($row: any) => {
+    const $rows = $cells.map($row => {
       return $('<div>')
         .addClass('row')
         .append($row);
@@ -39,7 +40,7 @@ class Grid {
    * 设置每个单元格的高
    */
   layout() {
-    const width = this._$container.find('span:first-child').width();
+    const width = this._$container.find('span:first-child').width() || 30;
 
     $('.cell', this._$container)
       .height(width)
@@ -53,7 +54,7 @@ class Grid {
    * @param {} popupObj
    */
   bindPopup(popupObj: any) {
-    this._$container.on('click', 'span', (e: any) => {
+    this._$container.on('click', 'span', e => {
       const $cell = $(e.target);
 
       if ($cell.hasClass('fixed')) {
@@ -103,7 +104,7 @@ class Grid {
     // console.log(data);
 
     const marks = checker.matrixMasks;
-    this._$container.children().each((rowIndex: number, div: any) => {
+    this._$container.children().each((rowIndex, div) => {
       $(div)
         .children()
         .each((colIndex, span) => {
@@ -123,13 +124,13 @@ class Grid {
   _getData() {
     return this._$container
       .children()
-      .map((rowIndex: number, div: any) => {
+      .map((rowIndex, div) => {
         return $(div)
           .children()
           .map((colIndex, span) => parseInt($(span).text()) || 0);
       })
       .toArray()
-      .map(($data: JQuery) => $data.toArray());
+      .map($data => $data.toArray());
   }
 }
 

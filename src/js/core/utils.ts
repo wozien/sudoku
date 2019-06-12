@@ -12,7 +12,7 @@ export function makeMatrix(v: number | boolean) {
  * Fisher-Yates 洗牌算法
  * @param {*} arr
  */
-export function shuffle(arr: Array<number>) {
+export function shuffle(arr: number[]) {
   const len = arr.length;
   for (let i = 0; i < len - 1; i++) {
     let j = i + Math.floor(Math.random() * (len - i));
