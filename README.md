@@ -2,7 +2,7 @@
 
 ## 预览
 
-<img src="http://blog.inoob.xyz//github/20190612/1.jpg" style="border: 1px solid #eee"/>
+<img src="http://blog.inoob.xyz//github/20190612/1.jpg" width="300" style="border: 1px solid #eee"/>
 
 ## 使用
 
